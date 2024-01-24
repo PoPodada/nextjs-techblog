@@ -1,8 +1,13 @@
 
 import { title } from "process"
 import { parseRSSfeed } from "../memberPosts"
+import { server } from "@/src/mocks/server"
+
 
 describe("membersPost",()=>{
+    beforeAll(() => server.listen())
+    afterEach(() => server.resetHandlers())
+    afterAll(() => server.close())
     test("sample",async()=>{
         const results = await parseRSSfeed('https://qiita.com/PoPodada/feed')
 
