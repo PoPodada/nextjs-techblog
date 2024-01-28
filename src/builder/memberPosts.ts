@@ -62,6 +62,9 @@ export const getmemberpost = async (member: Member): Promise<Post[]> => {
 }
 
 export const getmemberspost = async(members: Member[]):Promise<Post[]> => {
+
+    await Promise.all(members.map(getmemberpost))
+
     return [
         {
         title:'自分のサイトをmysqlと紐づける',
